@@ -1,0 +1,572 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Custom:AS5600 U3
+U 1 1 61B2500E
+P 7300 3550
+F 0 "U3" H 7300 4015 50  0000 C CNN
+F 1 "AS5600" H 7300 3924 50  0000 C CNN
+F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 7300 3550 50  0001 C CNN
+F 3 "" H 7300 3550 50  0001 C CNN
+	1    7300 3550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom:NC7SB3257P6X U2
+U 1 1 61B25991
+P 5300 3500
+F 0 "U2" H 5100 3900 50  0000 C CNN
+F 1 "NC7SB3257P6X" H 4900 3100 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-363_SC-70-6" H 5300 3500 50  0001 C CNN
+F 3 "" H 5300 3500 50  0001 C CNN
+	1    5300 3500
+	1    0    0    -1  
+$EndComp
+Text GLabel 2650 3700 0    50   Input ~ 0
+SCL
+Text GLabel 2650 3600 0    50   Input ~ 0
+SDA
+$Comp
+L power:+3.3V #PWR02
+U 1 1 61B2D68D
+P 3450 3000
+F 0 "#PWR02" H 3450 2850 50  0001 C CNN
+F 1 "+3.3V" H 3450 3150 50  0000 C CNN
+F 2 "" H 3450 3000 50  0001 C CNN
+F 3 "" H 3450 3000 50  0001 C CNN
+	1    3450 3000
+	1    0    0    -1  
+$EndComp
+Text GLabel 2650 3500 0    50   Input ~ 0
+SEL
+Text GLabel 4950 3600 0    50   Input ~ 0
+SEL
+Text GLabel 7700 3600 2    50   Input ~ 0
+SDA1
+Text GLabel 7700 3500 2    50   Input ~ 0
+SCL
+$Comp
+L power:+3.3V #PWR07
+U 1 1 61B33C7B
+P 5300 3100
+F 0 "#PWR07" H 5300 2950 50  0001 C CNN
+F 1 "+3.3V" H 5300 3250 50  0000 C CNN
+F 2 "" H 5300 3100 50  0001 C CNN
+F 3 "" H 5300 3100 50  0001 C CNN
+	1    5300 3100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR08
+U 1 1 61B342EF
+P 5300 3900
+F 0 "#PWR08" H 5300 3650 50  0001 C CNN
+F 1 "GND" H 5305 3727 50  0000 C CNN
+F 2 "" H 5300 3900 50  0001 C CNN
+F 3 "" H 5300 3900 50  0001 C CNN
+	1    5300 3900
+	1    0    0    -1  
+$EndComp
+Text GLabel 5650 3400 2    50   Input ~ 0
+SDA1
+Text GLabel 4950 3400 0    50   Input ~ 0
+SDA
+Text GLabel 5650 3600 2    50   Input ~ 0
+SDA2
+NoConn ~ 7700 3700
+$Comp
+L power:GND #PWR012
+U 1 1 61B384E2
+P 6700 3850
+F 0 "#PWR012" H 6700 3600 50  0001 C CNN
+F 1 "GND" H 6705 3677 50  0000 C CNN
+F 2 "" H 6700 3850 50  0001 C CNN
+F 3 "" H 6700 3850 50  0001 C CNN
+	1    6700 3850
+	1    0    0    -1  
+$EndComp
+NoConn ~ 6900 3600
+$Comp
+L power:+3.3V #PWR011
+U 1 1 61B39820
+P 6700 3250
+F 0 "#PWR011" H 6700 3100 50  0001 C CNN
+F 1 "+3.3V" H 6700 3400 50  0000 C CNN
+F 2 "" H 6700 3250 50  0001 C CNN
+F 3 "" H 6700 3250 50  0001 C CNN
+	1    6700 3250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6700 3250 6700 3400
+Connection ~ 6700 3400
+Wire Wire Line
+	6700 3400 6700 3500
+Wire Wire Line
+	5000 2050 5250 2050
+$Comp
+L power:GND #PWR06
+U 1 1 61B3A400
+P 5400 2500
+F 0 "#PWR06" H 5400 2250 50  0001 C CNN
+F 1 "GND" H 5405 2327 50  0000 C CNN
+F 2 "" H 5400 2500 50  0001 C CNN
+F 3 "" H 5400 2500 50  0001 C CNN
+	1    5400 2500
+	1    0    0    -1  
+$EndComp
+Text GLabel 5000 2250 2    50   Input ~ 0
+SCL
+Text GLabel 5000 2350 2    50   Input ~ 0
+SDA2
+$Comp
+L Connector_Generic:Conn_01x05 J1
+U 1 1 61B30B47
+P 4800 2250
+F 0 "J1" H 4880 2292 50  0000 L CNN
+F 1 "Conn_01x05" H 4880 2201 50  0000 L CNN
+F 2 "UltraLibrarian:SM05B-NSHSS-TBLFSN" H 4800 2250 50  0001 C CNN
+F 3 "~" H 4800 2250 50  0001 C CNN
+	1    4800 2250
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	5400 2450 5400 2500
+$Comp
+L power:+3.3V #PWR05
+U 1 1 61B3F795
+P 5250 2000
+F 0 "#PWR05" H 5250 1850 50  0001 C CNN
+F 1 "+3.3V" H 5250 2150 50  0000 C CNN
+F 2 "" H 5250 2000 50  0001 C CNN
+F 3 "" H 5250 2000 50  0001 C CNN
+	1    5250 2000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5250 2050 5250 2000
+Wire Wire Line
+	5000 2450 5400 2450
+Wire Wire Line
+	5000 2150 5400 2150
+Wire Wire Line
+	5400 2150 5400 2450
+Connection ~ 5400 2450
+$Comp
+L Device:R R4
+U 1 1 61B40EB4
+P 7450 5000
+F 0 "R4" H 7520 5046 50  0000 L CNN
+F 1 "10k" H 7520 4955 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" V 7380 5000 50  0001 C CNN
+F 3 "~" H 7450 5000 50  0001 C CNN
+	1    7450 5000
+	1    0    0    -1  
+$EndComp
+Text GLabel 6100 5150 3    50   Input ~ 0
+SCL
+Text GLabel 7450 5150 3    50   Input ~ 0
+SDA
+$Comp
+L power:+3.3V #PWR010
+U 1 1 61B438D1
+P 7450 4850
+F 0 "#PWR010" H 7450 4700 50  0001 C CNN
+F 1 "+3.3V" H 7450 5000 50  0000 C CNN
+F 2 "" H 7450 4850 50  0001 C CNN
+F 3 "" H 7450 4850 50  0001 C CNN
+	1    7450 4850
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR03
+U 1 1 61B44294
+P 6100 4850
+F 0 "#PWR03" H 6100 4700 50  0001 C CNN
+F 1 "+3.3V" H 6100 5000 50  0000 C CNN
+F 2 "" H 6100 4850 50  0001 C CNN
+F 3 "" H 6100 4850 50  0001 C CNN
+	1    6100 4850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R1
+U 1 1 61B43E72
+P 6100 5000
+F 0 "R1" H 6170 5046 50  0000 L CNN
+F 1 "5.1k" H 6170 4955 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" V 6030 5000 50  0001 C CNN
+F 3 "~" H 6100 5000 50  0001 C CNN
+	1    6100 5000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R2
+U 1 1 61B4795F
+P 6550 5000
+F 0 "R2" H 6620 5046 50  0000 L CNN
+F 1 "10k" H 6620 4955 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" V 6480 5000 50  0001 C CNN
+F 3 "~" H 6550 5000 50  0001 C CNN
+	1    6550 5000
+	1    0    0    -1  
+$EndComp
+Text GLabel 7000 5150 3    50   Input ~ 0
+SDA2
+Text GLabel 6550 5150 3    50   Input ~ 0
+SDA1
+$Comp
+L power:+3.3V #PWR04
+U 1 1 61B47967
+P 6550 4850
+F 0 "#PWR04" H 6550 4700 50  0001 C CNN
+F 1 "+3.3V" H 6550 5000 50  0000 C CNN
+F 2 "" H 6550 4850 50  0001 C CNN
+F 3 "" H 6550 4850 50  0001 C CNN
+	1    6550 4850
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR09
+U 1 1 61B4796D
+P 7000 4850
+F 0 "#PWR09" H 7000 4700 50  0001 C CNN
+F 1 "+3.3V" H 7000 5000 50  0000 C CNN
+F 2 "" H 7000 4850 50  0001 C CNN
+F 3 "" H 7000 4850 50  0001 C CNN
+	1    7000 4850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R3
+U 1 1 61B47973
+P 7000 5000
+F 0 "R3" H 7070 5046 50  0000 L CNN
+F 1 "10k" H 7070 4955 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" V 6930 5000 50  0001 C CNN
+F 3 "~" H 7000 5000 50  0001 C CNN
+	1    7000 5000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C1
+U 1 1 61B5D14E
+P 6700 3600
+F 0 "C1" H 6500 3650 50  0000 L CNN
+F 1 "100nF" H 6300 3550 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 6700 3600 50  0001 C CNN
+F 3 "~" H 6700 3600 50  0001 C CNN
+	1    6700 3600
+	1    0    0    -1  
+$EndComp
+Connection ~ 6700 3500
+Wire Wire Line
+	6700 3500 6900 3500
+Wire Wire Line
+	6700 3400 6900 3400
+Wire Wire Line
+	6700 3700 6900 3700
+Wire Wire Line
+	6700 3700 6700 3850
+Connection ~ 6700 3700
+$Comp
+L power:GND #PWR013
+U 1 1 61B64E59
+P 7850 3200
+F 0 "#PWR013" H 7850 2950 50  0001 C CNN
+F 1 "GND" H 7855 3027 50  0000 C CNN
+F 2 "" H 7850 3200 50  0001 C CNN
+F 3 "" H 7850 3200 50  0001 C CNN
+	1    7850 3200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7700 3400 7700 3200
+Wire Wire Line
+	7700 3200 7850 3200
+$Comp
+L KeypadLib:Seeeduiono_Xiao U1
+U 1 1 61B6DC29
+P 3350 3500
+F 0 "U1" H 2800 4000 50  0000 C CNN
+F 1 "Seeeduiono_Xiao" H 2750 3000 50  0000 C CNN
+F 2 "KeypadLib:Seeeduino_Xiao" H 3350 3500 50  0001 C CNN
+F 3 "" H 3350 3500 50  0001 C CNN
+	1    3350 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR01
+U 1 1 61B7105F
+P 3350 4000
+F 0 "#PWR01" H 3350 3750 50  0001 C CNN
+F 1 "GND" H 3355 3827 50  0000 C CNN
+F 2 "" H 3350 4000 50  0001 C CNN
+F 3 "" H 3350 4000 50  0001 C CNN
+	1    3350 4000
+	1    0    0    -1  
+$EndComp
+NoConn ~ 2650 3800
+NoConn ~ 3250 3000
+NoConn ~ 2650 3300
+NoConn ~ 2650 3200
+NoConn ~ 5650 3300
+NoConn ~ 6400 3750
+$Comp
+L Mechanical:MountingHole H1
+U 1 1 61B8CA46
+P 6450 2200
+F 0 "H1" H 6550 2246 50  0000 L CNN
+F 1 "MountingHole" H 6550 2155 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3_Pad_Via" H 6450 2200 50  0001 C CNN
+F 3 "~" H 6450 2200 50  0001 C CNN
+	1    6450 2200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H3
+U 1 1 61B8D025
+P 6750 2200
+F 0 "H3" H 6850 2246 50  0000 L CNN
+F 1 "MountingHole" H 6850 2155 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3_Pad_Via" H 6750 2200 50  0001 C CNN
+F 3 "~" H 6750 2200 50  0001 C CNN
+	1    6750 2200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H2
+U 1 1 61B8F95A
+P 6450 2500
+F 0 "H2" H 6550 2546 50  0000 L CNN
+F 1 "MountingHole" H 6550 2455 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3_Pad_Via" H 6450 2500 50  0001 C CNN
+F 3 "~" H 6450 2500 50  0001 C CNN
+	1    6450 2500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H4
+U 1 1 61B8F960
+P 6750 2500
+F 0 "H4" H 6850 2546 50  0000 L CNN
+F 1 "MountingHole" H 6850 2455 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3_Pad_Via" H 6750 2500 50  0001 C CNN
+F 3 "~" H 6750 2500 50  0001 C CNN
+	1    6750 2500
+	1    0    0    -1  
+$EndComp
+Text GLabel 4050 3400 2    50   Input ~ 0
+EN_SW
+$Comp
+L power:GND #PWR0101
+U 1 1 61C0AFF1
+P 4050 1750
+F 0 "#PWR0101" H 4050 1500 50  0001 C CNN
+F 1 "GND" H 4055 1577 50  0000 C CNN
+F 2 "" H 4050 1750 50  0001 C CNN
+F 3 "" H 4050 1750 50  0001 C CNN
+	1    4050 1750
+	1    0    0    -1  
+$EndComp
+NoConn ~ 2650 3400
+Text GLabel 4050 3600 2    50   Input ~ 0
+R_CONT
+Text GLabel 4050 3500 2    50   Input ~ 0
+G_CONT
+Text GLabel 4050 3700 2    50   Input ~ 0
+B_CONT
+Text GLabel 3000 1950 0    50   Input ~ 0
+RLED
+Text GLabel 3000 2150 0    50   Input ~ 0
+GLED
+Text GLabel 3000 2350 0    50   Input ~ 0
+BLED
+$Comp
+L Device:R R5
+U 1 1 61C59C69
+P 3150 1950
+F 0 "R5" V 3150 1950 50  0000 C CNN
+F 1 "65R" V 3250 1950 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" V 3080 1950 50  0001 C CNN
+F 3 "~" H 3150 1950 50  0001 C CNN
+	1    3150 1950
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R7
+U 1 1 61C5B281
+P 3150 2350
+F 0 "R7" V 3150 2350 50  0000 C CNN
+F 1 "10R" V 3250 2350 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" V 3080 2350 50  0001 C CNN
+F 3 "~" H 3150 2350 50  0001 C CNN
+	1    3150 2350
+	0    1    1    0   
+$EndComp
+$Comp
+L SparkFun-Switches:SW_SPST_LED_RGB SW2
+U 1 1 61C9C924
+P 3600 1950
+F 0 "SW2" H 3600 2417 50  0000 C CNN
+F 1 "SW_SPST_LED_RGB" H 3600 2326 50  0000 C CNN
+F 2 "keyswitches:Kailh_socket_MX_SMD_RGB" H 3600 2250 50  0001 C CNN
+F 3 "" H 3600 2250 50  0001 C CNN
+	1    3600 1950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3300 1750 3050 1750
+Wire Wire Line
+	3900 1750 4050 1750
+$Comp
+L power:+3.3V #PWR0102
+U 1 1 61CA7C83
+P 4050 2150
+F 0 "#PWR0102" H 4050 2000 50  0001 C CNN
+F 1 "+3.3V" H 4050 2300 50  0000 C CNN
+F 2 "" H 4050 2150 50  0001 C CNN
+F 3 "" H 4050 2150 50  0001 C CNN
+	1    4050 2150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3900 2150 4050 2150
+$Comp
+L Device:R R6
+U 1 1 61C5AE9D
+P 3150 2150
+F 0 "R6" V 3150 2150 50  0000 C CNN
+F 1 "10R" V 3250 2150 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" V 3080 2150 50  0001 C CNN
+F 3 "~" H 3150 2150 50  0001 C CNN
+	1    3150 2150
+	0    1    1    0   
+$EndComp
+Text GLabel 3050 1750 0    50   Input ~ 0
+EN_SW
+$Comp
+L Transistor_BJT:MMBT3904 Q?
+U 1 1 61CB214C
+P 3350 4950
+F 0 "Q?" H 3541 4996 50  0000 L CNN
+F 1 "MMBT3904" H 3541 4905 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 3550 4875 50  0001 L CIN
+F 3 "https://www.fairchildsemi.com/datasheets/2N/2N3904.pdf" H 3350 4950 50  0001 L CNN
+	1    3350 4950
+	1    0    0    -1  
+$EndComp
+Text GLabel 2850 4950 0    50   Input ~ 0
+G_CONT
+$Comp
+L Device:R R?
+U 1 1 61CB90B9
+P 3000 4950
+F 0 "R?" V 2793 4950 50  0000 C CNN
+F 1 "5.1k" V 2884 4950 50  0000 C CNN
+F 2 "" V 2930 4950 50  0001 C CNN
+F 3 "~" H 3000 4950 50  0001 C CNN
+	1    3000 4950
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 61CBA938
+P 3450 5150
+F 0 "#PWR?" H 3450 4900 50  0001 C CNN
+F 1 "GND" H 3455 4977 50  0000 C CNN
+F 2 "" H 3450 5150 50  0001 C CNN
+F 3 "" H 3450 5150 50  0001 C CNN
+	1    3450 5150
+	1    0    0    -1  
+$EndComp
+Text GLabel 3450 4750 1    50   Input ~ 0
+GLED
+$Comp
+L Transistor_BJT:MMBT3904 Q?
+U 1 1 61CBEB1D
+P 4950 5350
+F 0 "Q?" H 5141 5396 50  0000 L CNN
+F 1 "MMBT3904" H 5141 5305 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 5150 5275 50  0001 L CIN
+F 3 "https://www.fairchildsemi.com/datasheets/2N/2N3904.pdf" H 4950 5350 50  0001 L CNN
+	1    4950 5350
+	1    0    0    -1  
+$EndComp
+Text GLabel 4450 5350 0    50   Input ~ 0
+B_CONT
+$Comp
+L Device:R R?
+U 1 1 61CBEB24
+P 4600 5350
+F 0 "R?" V 4393 5350 50  0000 C CNN
+F 1 "5.1k" V 4484 5350 50  0000 C CNN
+F 2 "" V 4530 5350 50  0001 C CNN
+F 3 "~" H 4600 5350 50  0001 C CNN
+	1    4600 5350
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 61CBEB2A
+P 5050 5550
+F 0 "#PWR?" H 5050 5300 50  0001 C CNN
+F 1 "GND" H 5055 5377 50  0000 C CNN
+F 2 "" H 5050 5550 50  0001 C CNN
+F 3 "" H 5050 5550 50  0001 C CNN
+	1    5050 5550
+	1    0    0    -1  
+$EndComp
+Text GLabel 5050 5150 1    50   Input ~ 0
+BLED
+$Comp
+L Transistor_BJT:MMBT3904 Q?
+U 1 1 61CBFF0C
+P 4550 4650
+F 0 "Q?" H 4741 4696 50  0000 L CNN
+F 1 "MMBT3904" H 4741 4605 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 4750 4575 50  0001 L CIN
+F 3 "https://www.fairchildsemi.com/datasheets/2N/2N3904.pdf" H 4550 4650 50  0001 L CNN
+	1    4550 4650
+	1    0    0    -1  
+$EndComp
+Text GLabel 4050 4650 0    50   Input ~ 0
+R_CONT
+$Comp
+L Device:R R?
+U 1 1 61CBFF13
+P 4200 4650
+F 0 "R?" V 3993 4650 50  0000 C CNN
+F 1 "5.1k" V 4084 4650 50  0000 C CNN
+F 2 "" V 4130 4650 50  0001 C CNN
+F 3 "~" H 4200 4650 50  0001 C CNN
+	1    4200 4650
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 61CBFF19
+P 4650 4850
+F 0 "#PWR?" H 4650 4600 50  0001 C CNN
+F 1 "GND" H 4655 4677 50  0000 C CNN
+F 2 "" H 4650 4850 50  0001 C CNN
+F 3 "" H 4650 4850 50  0001 C CNN
+	1    4650 4850
+	1    0    0    -1  
+$EndComp
+Text GLabel 4650 4450 1    50   Input ~ 0
+RLED
+$EndSCHEMATC
