@@ -1,0 +1,7 @@
+Comment,Designator,Footprint,LCSC
+100nF,C1,Capacitor_SMD:C_0805_2012Metric,C49678
+MMBT3904,"Q1,Q2,Q3",Package_TO_SOT_SMD:SOT-23,C20526
+5.1k,"R1,R8,R9,R10",Resistor_SMD:R_0805_2012Metric,C27834
+10k,"R2,R3,R4",Resistor_SMD:R_0805_2012Metric,C17414
+68R,R5,Resistor_SMD:R_0805_2012Metric,C17802
+10R,"R6,R7",Resistor_SMD:R_0805_2012Metric,C17415

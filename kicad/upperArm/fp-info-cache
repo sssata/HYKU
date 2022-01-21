@@ -1,4 +1,4 @@
-20814854441002163
+20818137296960819
 10118194-0001LF
 AMPHENOL_10118194-0001LF
 
@@ -52352,6 +52352,13 @@ DIP-16_421_ELL
 0
 16
 16
+Custom
+Standoff 4883
+
+
+0
+1
+1
 Diode_SMD
 D_0201_0603Metric
 Diode SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf), generated with kicad-footprint-generator
@@ -88591,6 +88598,13 @@ varistor SIOV
 0
 2
 2
+base
+JLCPCB Tooling Hole
+
+
+0
+0
+0
 digikey-footprints
 3-SIP_Module_TM1000Q
 

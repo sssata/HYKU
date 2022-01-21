@@ -1,28 +1,14 @@
-Source:,C:\Users\Tony\OneDrive - University of Waterloo (1)\TBL2\kicad\base\base.sch,,,,
-Date:,2021-12-25 16:54,,,,
-Tool:,Eeschema (5.1.6)-1,,,,
-Component Count:,23,,,,
-Ref,Value,Footprint,Datasheet,Manufacturer,Vendor
-C1,100nF,Capacitor_SMD:C_0805_2012Metric,~,,
-H1,MountingHole,MountingHole:MountingHole_3.2mm_M3_Pad_Via,~,,
-H2,MountingHole,MountingHole:MountingHole_3.2mm_M3_Pad_Via,~,,
-H3,MountingHole,MountingHole:MountingHole_3.2mm_M3_Pad_Via,~,,
-H4,MountingHole,MountingHole:MountingHole_3.2mm_M3_Pad_Via,~,,
-J1,Conn_01x05,UltraLibrarian:SM05B-NSHSS-TBLFSN,~,,
-Q1,MMBT3904,Package_TO_SOT_SMD:SOT-23,https://www.fairchildsemi.com/datasheets/2N/2N3904.pdf,,
-Q2,MMBT3904,Package_TO_SOT_SMD:SOT-23,https://www.fairchildsemi.com/datasheets/2N/2N3904.pdf,,
-Q3,MMBT3904,Package_TO_SOT_SMD:SOT-23,https://www.fairchildsemi.com/datasheets/2N/2N3904.pdf,,
-R1,5.1k,Resistor_SMD:R_0805_2012Metric,~,,
-R2,10k,Resistor_SMD:R_0805_2012Metric,~,,
-R3,10k,Resistor_SMD:R_0805_2012Metric,~,,
-R4,10k,Resistor_SMD:R_0805_2012Metric,~,,
-R5,65R,Resistor_SMD:R_0805_2012Metric,~,,
-R6,10R,Resistor_SMD:R_0805_2012Metric,~,,
-R7,10R,Resistor_SMD:R_0805_2012Metric,~,,
-R8,5.1k,Resistor_SMD:R_0805_2012Metric,~,,
-R9,5.1k,Resistor_SMD:R_0805_2012Metric,~,,
-R10,5.1k,Resistor_SMD:R_0805_2012Metric,~,,
-SW2,SW_SPST_LED_RGB,keyswitches:Kailh_socket_MX_SMD_RGB,,,
-U1,Seeeduiono_Xiao,KeypadLib:Seeeduino_Xiao,,,
-U2,NC7SB3257P6X,Package_TO_SOT_SMD:SOT-363_SC-70-6,,,
-U3,AS5600,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,,,
+"Id";"Designator";"Package";"Quantity";"Designation";"Supplier and ref";
+1;"REF**,REF**,REF**";"JLCPCB Tooling Hole";3;"JLCPCB Tooling Hole";;;
+2;"U3";"SOIC-8_3.9x4.9mm_P1.27mm";1;"AS5600";;;
+3;"U1";"Seeeduino_Xiao";1;"Seeeduiono_Xiao";;;
+4;"SW2";"Kailh_socket_MX_SMD_RGB";1;"SW_SPST_LED_RGB";;;
+5;"R10,R9,R8,R1";"R_0805_2012Metric";4;"5.1k";;;
+6;"Q3,Q2,Q1";"SOT-23";3;"MMBT3904";;;
+7;"R7,R6";"R_0805_2012Metric";2;"10R";;;
+8;"R5";"R_0805_2012Metric";1;"68R";;;
+9;"J1";"SM05B-NSHSS-TBLFSN";1;"TO ARM";;;
+10;"H4,H3,H2,H1";"MountingHole_3.2mm_M3_Pad_Via";4;"MountingHole";;;
+11;"C1";"C_0805_2012Metric";1;"100nF";;;
+12;"R2,R3,R4";"R_0805_2012Metric";3;"10k";;;
+13;"U2";"SOT-363_SC-70-6";1;"NC7SB3257P6X";;;
