@@ -1,10 +1,10 @@
-import tkinter as tk
-from tkinter import ttk
-from tkinter import messagebox
-import time
-from pprint import pprint
-
+import os
+import sys
 import threading
+import time
+import tkinter as tk
+from pprint import pprint
+from tkinter import messagebox, ttk
 
 import serial
 import serial.tools.list_ports
@@ -16,12 +16,25 @@ VID = 0x2886
 import ctypes
 
 BG_COLOR = "#b3b3b3"
-AREA_COLOR = "#a1ebff"
+AREA_COLOR = "#a3ebff"
 AREA_BORDER_COLOR = "#0083c9"
+
+FRAME_BG_COLOR = "SystemButtonFace"
+FRAME_BG_COLOR = "#EBEBF0"
 
 
 user = ctypes.windll.user32
 
+
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 class RECT(ctypes.Structure):
     _fields_ = [
@@ -91,7 +104,7 @@ class TabletArea(tk.LabelFrame):
 
     def __init__(self, master, *args, **kwargs):
         tk.LabelFrame.__init__(self, master, *args, **kwargs)
-        self.configure(text="Tablet Area")
+        self.configure(text="Tablet Area", bg=master["bg"])
 
         self.x_size = tk.StringVar(master, 80, name="x_size_tablet")
         self.y_size = tk.StringVar(master, 60, name="y_size_tablet")
@@ -106,14 +119,15 @@ class TabletArea(tk.LabelFrame):
             self,
             height=self.CANVAS_HEIGHT,
             width=self.CANVAS_WIDTH,
-            bg="SystemButtonFace",
+            bg=master["bg"],
             borderwidth=0,
+            highlightthickness=1,
         )
         self.screen_area.grid(column=0, row=0, columnspan=2, padx=0, pady=5)
 
         validateCallback = self.register(self.validateDigit)
 
-        self.x_size_frame = tk.LabelFrame(self, text="Width")
+        self.x_size_frame = tk.LabelFrame(self, text="Width", bg=self["bg"])
         self.x_size_frame.grid(column=0, row=1, padx=5, pady=5)
         self.x_size_entry = tk.Entry(
             self.x_size_frame,
@@ -123,9 +137,9 @@ class TabletArea(tk.LabelFrame):
             width=12,
         )
         self.x_size_entry.grid(column=0, row=0, padx=5, pady=5)
-        tk.Label(self.x_size_frame, text="mm").grid(column=1, row=0, padx=(0,5), pady=5)
+        tk.Label(self.x_size_frame, text="mm", bg=self["bg"]).grid(column=1, row=0, padx=(0,5), pady=5)
 
-        self.y_size_frame = tk.LabelFrame(self, text="Height")
+        self.y_size_frame = tk.LabelFrame(self, text="Height", bg=self["bg"])
         self.y_size_frame.grid(column=1, row=1, padx=5, pady=5)
         self.y_size_entry = tk.Entry(
             self.y_size_frame,
@@ -135,9 +149,9 @@ class TabletArea(tk.LabelFrame):
             width=12,
         )
         self.y_size_entry.grid(column=0, row=0, padx=5, pady=5)
-        tk.Label(self.y_size_frame, text="mm").grid(column=1, row=0, padx=(0,5), pady=5)
+        tk.Label(self.y_size_frame, text="mm", bg=self["bg"]).grid(column=1, row=0, padx=(0,5), pady=5)
 
-        self.x_origin_frame = tk.LabelFrame(self, text="X Offset")
+        self.x_origin_frame = tk.LabelFrame(self, text="X Offset", bg=self["bg"])
         self.x_origin_frame.grid(column=0, row=2, padx=5, pady=5)
         self.x_origin_entry = tk.Entry(
             self.x_origin_frame,
@@ -147,9 +161,9 @@ class TabletArea(tk.LabelFrame):
             width=12,
         )
         self.x_origin_entry.grid(column=0, row=0, padx=5, pady=5)
-        tk.Label(self.x_origin_frame, text="mm").grid(column=1, row=0, padx=(0,5), pady=5)
+        tk.Label(self.x_origin_frame, text="mm", bg=self["bg"]).grid(column=1, row=0, padx=(0,5), pady=5)
 
-        self.y_origin_frame = tk.LabelFrame(self, text="Y Offset")
+        self.y_origin_frame = tk.LabelFrame(self, text="Y Offset", bg=self["bg"])
         self.y_origin_frame.grid(column=1, row=2, padx=5, pady=5)
         self.y_origin_entry = tk.Entry(
             self.y_origin_frame,
@@ -159,13 +173,13 @@ class TabletArea(tk.LabelFrame):
             width=12,
         )
         self.y_origin_entry.grid(column=0, row=0, padx=5, pady=5)
-        tk.Label(self.y_origin_frame, text="mm").grid(column=1, row=0, padx=(0,5), pady=5)
+        tk.Label(self.y_origin_frame, text="mm", bg=self["bg"]).grid(column=1, row=0, padx=(0,5), pady=5)
 
-        self.lock_ratio_frame = tk.LabelFrame(self, text="Lock Aspect Ratio")
+        self.lock_ratio_frame = tk.LabelFrame(self, text="Lock Aspect Ratio", bg=self["bg"])
         self.lock_ratio_frame.grid(column=0, row=3, padx=5, pady=5)
         self.lock_ratio_var = tk.IntVar(master, 0, name="lock_ratio")
         self.lock_ratio_button = tk.Checkbutton(
-            self.lock_ratio_frame, variable=self.lock_ratio_var
+            self.lock_ratio_frame, variable=self.lock_ratio_var, bg=self["bg"]
         )
         self.lock_ratio_button.grid(column=0, row=0)
 
@@ -320,20 +334,21 @@ class ScreenMapFrame(tk.LabelFrame):
         self.y_origin = tk.StringVar(master, 0, name="y_origin")
         self.x_max_size = x_max_size
         self.y_max_size = y_max_size
-        self.configure(text="Screen Map")
+        self.configure(text="Screen Map", bg=master["bg"])
 
         self.screen_area = tk.Canvas(
             self,
             height=self.CANVAS_HEIGHT,
             width=self.CANVAS_WIDTH,
-            bg="SystemButtonFace",
+            bg=master["bg"],
             borderwidth=0,
+            highlightthickness=1,
         )
         self.screen_area.grid(column=0, row=0, columnspan=2, padx=0, pady=5)
 
         reg = self.register(self.validateDigit)
 
-        self.x_size_frame = tk.LabelFrame(self, text="Width")
+        self.x_size_frame = tk.LabelFrame(self, text="Width", bg=self["bg"])
         self.x_size_frame.grid(column=0, row=1, padx=5, pady=5)
         x_size_entry = tk.Entry(
             self.x_size_frame,
@@ -341,12 +356,13 @@ class ScreenMapFrame(tk.LabelFrame):
             validate="key",
             validatecommand=(reg, "%P"),
             width=12,
+            
         )
         x_size_entry.grid(column=0, row=0, padx=5, pady=5)
         self.x_size_frame.grid(column=0, row=1, padx=5, pady=5)
-        tk.Label(self.x_size_frame, text="px").grid(column=1, row=0, padx=(0,5), pady=5)
+        tk.Label(self.x_size_frame, text="px", bg=self["bg"]).grid(column=1, row=0, padx=(0,5), pady=5)
 
-        self.y_size_frame = tk.LabelFrame(self, text="Height")
+        self.y_size_frame = tk.LabelFrame(self, text="Height", bg=self["bg"])
         self.y_size_frame.grid(column=1, row=1, padx=5, pady=5)
         y_size_entry = tk.Entry(
             self.y_size_frame,
@@ -356,9 +372,9 @@ class ScreenMapFrame(tk.LabelFrame):
             width=12,
         )
         y_size_entry.grid(column=0, row=0, padx=5, pady=5)
-        tk.Label(self.y_size_frame, text="px").grid(column=1, row=0, padx=(0,5), pady=5)
+        tk.Label(self.y_size_frame, text="px", bg=self["bg"]).grid(column=1, row=0, padx=(0,5), pady=5)
 
-        self.x_origin_frame = tk.LabelFrame(self, text="X Offset")
+        self.x_origin_frame = tk.LabelFrame(self, text="X Offset", bg=self["bg"])
         self.x_origin_frame.grid(column=0, row=2, padx=5, pady=5)
         y_origin_entry = tk.Entry(
             self.x_origin_frame,
@@ -368,9 +384,9 @@ class ScreenMapFrame(tk.LabelFrame):
             width=12,
         )
         y_origin_entry.grid(column=0, row=0, padx=5, pady=5)
-        tk.Label(self.x_origin_frame, text="px").grid(column=1, row=0, padx=(0,5), pady=5)
+        tk.Label(self.x_origin_frame, text="px", bg=self["bg"]).grid(column=1, row=0, padx=(0,5), pady=5)
 
-        self.y_origin_frame = tk.LabelFrame(self, text="Y Offset")
+        self.y_origin_frame = tk.LabelFrame(self, text="Y Offset", bg=self["bg"])
         self.y_origin_frame.grid(column=1, row=2, padx=5, pady=5)
         x_origin_entry = tk.Entry(
             self.y_origin_frame,
@@ -380,7 +396,7 @@ class ScreenMapFrame(tk.LabelFrame):
             width=12,
         )
         x_origin_entry.grid(column=0, row=0, padx=5, pady=5)
-        tk.Label(self.y_origin_frame, text="px").grid(column=1, row=0, padx=(0,5), pady=5)
+        tk.Label(self.y_origin_frame, text="px", bg=self["bg"]).grid(column=1, row=0, padx=(0,5), pady=5)
 
         self.x_size.trace_add("write", self.updateScreenArea)
         self.y_size.trace_add("write", self.updateScreenArea)
@@ -500,10 +516,11 @@ class Application(ttk.Frame):
 
         self.grid(padx=10, pady=10)
 
+        self.configure(bg=FRAME_BG_COLOR)
+
         self.grid_configure(ipadx=5, ipady=5)
 
         # Init widgets
-        #label = ttk.Label(self, text="Low Latency Tablet Settings").grid(column=0, row=0, sticky="W")
 
         try:
             monitor_area_list = monitor_areas()
@@ -513,7 +530,6 @@ class Application(ttk.Frame):
         screenWidth = monitor_area_list[0][1].right - monitor_area_list[0][1].left
         screenHeight = monitor_area_list[0][1].bottom - monitor_area_list[0][1].top
         print(screenHeight)
-        print(screenWidth)
 
         self.screen_map_frame = ScreenMapFrame(
             self,
@@ -625,6 +641,8 @@ root = tk.Tk()
 root.geometry("338x680")
 root.resizable(False, False)
 root.title("LLT Configurator")
+root.iconbitmap(resource_path("favicon.ico"))
+root.configure(bg=FRAME_BG_COLOR)
 
 app = Application(root)
 root.mainloop()
