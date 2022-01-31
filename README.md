@@ -2,9 +2,9 @@
 ![HYKU logo long](https://user-images.githubusercontent.com/18311413/151296349-7dda3d0f-50e5-45e4-92ab-da6190cb1612.png)
 
 
-# Status: Under development
+Status: Under development
 
-##Idea
+## Idea
 
 ![HYKU Comparison Table](https://user-images.githubusercontent.com/18311413/151644011-40247c3f-1858-4fe7-b977-91bd842aceee.png "enter image title here")
 
@@ -14,7 +14,7 @@ The idea behind the LLT is an pointing device for playing osu! that combines 
 Please note that the colors and materials of the product are subject to change.
 
 
-##FAQ
+## FAQ
 
 **What is the polling rate and latency of the tablet?**
 
