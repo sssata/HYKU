@@ -11,6 +11,9 @@ Status: Under development
 
 The idea behind the LLT is an pointing device for playing osu! that combines the absolute position sensing of a drawing tablet with the low latency and high polling rate of a mouse.
 
+
+## Configuration Utility
+
 Please note that the colors and materials of the product are subject to change.
 
 
@@ -28,7 +31,7 @@ Approximately 100mm x 80mm.
 
 Due to geometry, the resolution of the tablet increases as the pen moves closer to the center joint of the tablet. At maximum distance, the spatial resolution is 0.168mm, while at minimum distance, the spatial resolution is  0.091mm.
 
-**What is the advantage of higher polling rates?
+** What is the advantage of higher polling rates?
 
 Higher polling rates don't just offer better reaction times, it also provides more accurate tracking of fast movements. See image below for an example:
 
