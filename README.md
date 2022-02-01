@@ -12,10 +12,18 @@ Status: Under development
 The idea behind the LLT is an pointing device for playing osu! that combines the absolute position sensing of a drawing tablet with the low latency and high polling rate of a mouse.
 
 
-## Configuration Utility
-
 Please note that the colors and materials of the product are subject to change.
 
+
+
+## Configuration Utility
+![configurator screenshot](https://user-images.githubusercontent.com/18311413/151927797-098c77c6-c0cf-4f20-8955-63f58b2a89a5.png)
+
+The HYKU tablet is plug and play and requires no drivers. The screen and tablet area settings are configured and saved on the tablet through the HYKU Configurator utility.
+
+The configurator utility exposes:
+- Setting Screen area and Tablet area
+- Setting smoothing
 
 ## FAQ
 
