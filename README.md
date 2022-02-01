@@ -47,12 +47,8 @@ Higher polling rates don't just offer better reaction times, it also provides mo
 
 # HYKU Tablet - CAD
 
-![comparison table](https://user-images.githubusercontent.com/18311413/151644011-40247c3f-1858-4fe7-b977-91bd842aceee.png)
-
-
-This repo contains 3D CAD and PCB CAD Files
-
+CAD Model
 ![TBL2](https://user-images.githubusercontent.com/18311413/151928230-37d69286-3b1a-4be6-8ce3-51baddb28af4.png)
 
-
+Noise simulation (noise magnitude magnified 10x)
 ![output_2021-12-25](https://user-images.githubusercontent.com/18311413/147380542-2b0fd6ac-12e6-4994-9144-c370a167ab2c.png)
