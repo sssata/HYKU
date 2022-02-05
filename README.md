@@ -1,4 +1,3 @@
-
 ![HYKU logo long small](https://user-images.githubusercontent.com/18311413/152659927-f8431532-06cb-4c32-8feb-6c59c7fe359e.png)
 
 ![DSC_7004](https://user-images.githubusercontent.com/18311413/152625943-edf4f875-47ea-483e-b48f-ee745d8d9139.jpg)
@@ -12,8 +11,6 @@
 
 
 The idea behind the LLT is an pointing device for playing osu! that combines the absolute position sensing of a drawing tablet with the low latency and high polling rate of a mouse.
-
-
 
 
 
@@ -33,12 +30,12 @@ The Configurator program can be found in [Releases](https://github.com/sssata/HY
 ## Tablet Specs
 
 - **Polling Rate:** 550 Hz
-
 - **Max Tablet Area:** Approx. 100mm x 80mm
-
 - **Max Physical Resolution:** Approx. 0.091mm
+- **Connector:** USB-C
 
 
-CAD Model
+## CAD Model
+
 ![HYKU Tablett CAD](https://user-images.githubusercontent.com/18311413/151928230-37d69286-3b1a-4be6-8ce3-51baddb28af4.png)
 
