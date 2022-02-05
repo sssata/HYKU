@@ -1,5 +1,5 @@
 
-![HYKU logo long](https://user-images.githubusercontent.com/18311413/151296349-7dda3d0f-50e5-45e4-92ab-da6190cb1612.png)
+![HYKU logo long small](https://user-images.githubusercontent.com/18311413/152659927-f8431532-06cb-4c32-8feb-6c59c7fe359e.png)
 
 ![DSC_7004](https://user-images.githubusercontent.com/18311413/152625943-edf4f875-47ea-483e-b48f-ee745d8d9139.jpg)
 
