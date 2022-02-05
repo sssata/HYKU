@@ -756,7 +756,7 @@ class Application(ttk.Frame):
 root = tk.Tk()
 root.geometry("338x675")
 root.resizable(False, False)
-root.title("LLT Configurator")
+root.title("HYKU Configurator")
 root.iconbitmap(resource_path("favicon.ico"))
 
 style = ttk.Style(root)
