@@ -1,10 +1,12 @@
 
 ![HYKU logo long](https://user-images.githubusercontent.com/18311413/151296349-7dda3d0f-50e5-45e4-92ab-da6190cb1612.png)
 
+![DSC_7004](https://user-images.githubusercontent.com/18311413/152625943-edf4f875-47ea-483e-b48f-ee745d8d9139.jpg)
 
-Status: Under development
+![DSC_7111_annotated](https://user-images.githubusercontent.com/18311413/152625966-24e227b2-af77-4b6e-9591-3986626f9558.jpg)
 
-## Idea
+
+## Concept
 
 ![HYKU Comparison Table](https://user-images.githubusercontent.com/18311413/151644011-40247c3f-1858-4fe7-b977-91bd842aceee.png "enter image title here")
 
@@ -25,23 +27,18 @@ The configurator utility exposes:
 - Setting Screen area and Tablet area
 - Setting smoothing
 
-## FAQ
+### Download
 
-**What is the polling rate and latency of the tablet?**
+The Configurator program can be found in [Releases](https://github.com/sssata/HYKU_CAD/releases/tag/v0.1).
 
-The polling rate is 550 Hz. The internal filtering is kept to a minimum to provide a worst case latency of 1.8ms. The end-to-end latency (pen input to monitor output) is subject to external factors like the game FPS, monitor refresh rate and latency, etc.
+## Tablet Specs
 
-**What is the maximum tablet area?**
+- Polling Rate : 550 Hz
 
-Approximately 100mm x 80mm.
+- Max Tablet Area: Approx. 100mm x 80mm.
 
-**What is the maximum resolution of the tablet?**
+- Max Physical Resolution: Approx. 0.091mm.
 
-Due to geometry, the resolution of the tablet increases as the pen moves closer to the center joint of the tablet. At maximum distance, the spatial resolution is 0.168mm, while at minimum distance, the spatial resolution is  0.091mm.
-
-** What is the advantage of higher polling rates?
-
-Higher polling rates don't just offer better reaction times, it also provides more accurate tracking of fast movements. See image below for an example:
 
 ![enter image description here](https://user-images.githubusercontent.com/18311413/147843408-313765c4-39ae-4b70-8b45-a95333d086ce.png "enter image title here")
 
