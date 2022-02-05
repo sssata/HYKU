@@ -29,6 +29,8 @@ The configurator utility exposes:
 
 ### Download
 
+The Configurator program can be found in [Releases](https://github.com/sssata/HYKU_CAD/releases/tag/v0.1).
+
 ## Tablet Specs
 
 - Polling Rate : 550 Hz
