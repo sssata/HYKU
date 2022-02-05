@@ -33,19 +33,13 @@ The Configurator program can be found in [Releases](https://github.com/sssata/HY
 
 ## Tablet Specs
 
-- Polling Rate : 550 Hz
+- **Polling Rate:** 550 Hz
 
-- Max Tablet Area: Approx. 100mm x 80mm.
+- **Max Tablet Area:** Approx. 100mm x 80mm
 
-- Max Physical Resolution: Approx. 0.091mm.
+- **Max Physical Resolution:** Approx. 0.091mm
 
-
-![enter image description here](https://user-images.githubusercontent.com/18311413/147843408-313765c4-39ae-4b70-8b45-a95333d086ce.png "enter image title here")
-
-# HYKU Tablet - CAD
 
 CAD Model
-![TBL2](https://user-images.githubusercontent.com/18311413/151928230-37d69286-3b1a-4be6-8ce3-51baddb28af4.png)
+![HYKU Tablett CAD](https://user-images.githubusercontent.com/18311413/151928230-37d69286-3b1a-4be6-8ce3-51baddb28af4.png)
 
-Noise simulation (noise magnitude magnified 10x)
-![output_2021-12-25](https://user-images.githubusercontent.com/18311413/147380542-2b0fd6ac-12e6-4994-9144-c370a167ab2c.png)
