@@ -14,7 +14,6 @@
 The idea behind the LLT is an pointing device for playing osu! that combines the absolute position sensing of a drawing tablet with the low latency and high polling rate of a mouse.
 
 
-Please note that the colors and materials of the product are subject to change.
 
 
 
