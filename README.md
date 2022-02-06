@@ -36,6 +36,7 @@ The Configurator program can be found in [Releases](https://github.com/sssata/HY
 - **Max Tablet Area:** Approx. 100mm x 80mm
 - **Max Physical Resolution:** Approx. 0.091mm
 - **Connector:** USB-C
+- **Hot Swappable Switch**
 
 
 ## CAD Model
