@@ -1,9 +1,12 @@
 ![HYKU logo long small](https://user-images.githubusercontent.com/18311413/152659927-f8431532-06cb-4c32-8feb-6c59c7fe359e.png)
 
+**Video Demo:** https://www.youtube.com/watch?v=EKBiNb4UB-o
+
 ![DSC_7004](https://user-images.githubusercontent.com/18311413/152625943-edf4f875-47ea-483e-b48f-ee745d8d9139.jpg)
 
-![DSC_7111_annotated](https://user-images.githubusercontent.com/18311413/152625966-24e227b2-af77-4b6e-9591-3986626f9558.jpg)
+![DSC_7114](https://user-images.githubusercontent.com/18311413/152664692-02d8e038-a3b2-4e2d-8261-2b5b40aecb2e.jpg)
 
+![DSC_7004](https://user-images.githubusercontent.com/18311413/152664539-6aa800b4-ca26-41a1-bf23-c7e43810bf02.png)
 
 ## Concept
 
