@@ -1,37 +1,65 @@
-## Welcome to GitHub Pages
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/18311413/152659927-f8431532-06cb-4c32-8feb-6c59c7fe359e.png" alt="HYKU Logo">
+  <br>
+  <img width=800 src="https://user-images.githubusercontent.com/18311413/152625943-edf4f875-47ea-483e-b48f-ee745d8d9139.jpg">
+</p>
 
-You can use the [editor on GitHub](https://github.com/sssata/HYKU_CAD/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+# What is it?
 
-### Markdown
+The HYKU Tablet is a novel drawing tablet-style input device designed from the ground up for osu!.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+**Image Below Links to Video:**
 
-```markdown
-Syntax highlighted code block
+[![IMAGE ALT TEXT HERE](https://user-images.githubusercontent.com/18311413/153312918-df6fcc0f-f73a-4208-afa7-066516a05722.png)](https://www.youtube.com/watch?v=EKBiNb4UB-o)
 
-# Header 1
-## Header 2
-### Header 3
+## Why HYKU?
 
-- Bulleted
-- List
+The goal of the HYKU is to create a pen tablet that is optimized for low latency. Most drawing tablets currently available offer polling rates below 200 Hz and have some level of hardware filtering that further decreases responsiveness, while the HYKU provides 600 Hz of raw sensor output.
 
-1. Numbered
-2. List
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/18311413/151644011-40247c3f-1858-4fe7-b977-91bd842aceee.png" alt="HYKU Comparison Table">
+</p>
 
-**Bold** and _Italic_ and `Code` text
+## Using the HYKU
 
-[Link](url) and ![Image](src)
-```
+**The HYKU tablet is plug and play and requires no drivers**. The screen and tablet area settings are written and saved on the tablet through the HYKU Configurator utility.
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+The configurator utility allows:
+- Setting Screen area and Tablet area
+- Setting cursor smoothing
 
-### Jekyll Themes
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/sssata/HYKU_CAD/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/18311413/151927797-098c77c6-c0cf-4f20-8955-63f58b2a89a5.png" alt="HYKU Comparison Table">
+</p>
 
-### Support or Contact
+The tablet features a single button: 
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+
+### Download
+
+The latest version of the configurator program can be found in [Releases](https://github.com/sssata/HYKU_CAD/releases/tag/v0.1).
+
+
+## What's in the Box
+- 1x HYKU Tablet, fully assembled
+- 1x Tablet Pen, Removable 
+
+## Tablet Specs
+
+- **Polling Rate:** 600 Hz
+- **Max Tablet Area:** Approx. 100mm x 80mm
+- **Max Physical Resolution:** Approx. 0.091mm
+- **Connector:** USB-C
+- **Hot Swappable Switch**
+
+
+## CAD Model
+
+![HYKU Tablett CAD](https://user-images.githubusercontent.com/18311413/151928230-37d69286-3b1a-4be6-8ce3-51baddb28af4.png)
+
+
+![DSC_7114](https://user-images.githubusercontent.com/18311413/152664692-02d8e038-a3b2-4e2d-8261-2b5b40aecb2e.jpg)
+
+![DSC_7004](https://user-images.githubusercontent.com/18311413/152664539-6aa800b4-ca26-41a1-bf23-c7e43810bf02.png)
