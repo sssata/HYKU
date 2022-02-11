@@ -53,10 +53,11 @@ The latest version of the configurator program can be found in [Releases](https:
 - **Hot Swappable Switch**
 
 
-## CAD Model
+## Gallery
 
 ![HYKU Tablett CAD](https://user-images.githubusercontent.com/18311413/151928230-37d69286-3b1a-4be6-8ce3-51baddb28af4.png)
 
+![DSC_7095](https://user-images.githubusercontent.com/18311413/153546109-68d16228-b222-4288-9a37-1ca600fde260.jpg)
 
 ![DSC_7114](https://user-images.githubusercontent.com/18311413/152664692-02d8e038-a3b2-4e2d-8261-2b5b40aecb2e.jpg)
 
