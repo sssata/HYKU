@@ -9,9 +9,7 @@
 
 The HYKU Tablet is a novel drawing tablet-style input device designed from the ground up for osu!.
 
-**Image Below Links to Video:**
-
-[![IMAGE ALT TEXT HERE](https://user-images.githubusercontent.com/18311413/153312918-df6fcc0f-f73a-4208-afa7-066516a05722.png)](https://www.youtube.com/watch?v=EKBiNb4UB-o)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EKBiNb4UB-o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Why HYKU?
 
