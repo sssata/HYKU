@@ -54,6 +54,17 @@ The latest version of the configurator program can be found in [Releases](https:
 - **Connector:** USB-C
 - **Hot Swappable Switch**
 
+## Tablet Usage Instructions
+
+1. Plug in tablet with a USB-C cable (not included)
+2. Press the key for right mouse button
+3. Activate/deactivate tablet by holding down the key for 1 second
+4. Configure tablet area and other options by using the HYKU Configurator.
+
+## Configurator Usage Instructions
+1. Configure tablet screen area and tablet area by entering values in the Area Settings tab.
+2. Ensure Tablet is plugged in and reconized by the program with the "Connected" indicator at the bottom left.
+3. Press the Upload button to apply settings and upload them to the tablet.
 
 ## Gallery
 
