@@ -9,9 +9,9 @@
 
 The HYKU Tablet is a novel drawing tablet-style input device designed from the ground up for osu!.
 
-**Image Below Links to Video:**
-
-[![IMAGE ALT TEXT HERE](https://user-images.githubusercontent.com/18311413/153312918-df6fcc0f-f73a-4208-afa7-066516a05722.png)](https://www.youtube.com/watch?v=EKBiNb4UB-o)
+<p align="center">
+<iframe width="800" height="500" src="https://www.youtube.com/embed/EKBiNb4UB-o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
 
 ## Why HYKU?
 
@@ -54,11 +54,23 @@ The latest version of the configurator program can be found in [Releases](https:
 - **Connector:** USB-C
 - **Hot Swappable Switch**
 
+## Tablet Usage Instructions
 
-## CAD Model
+1. Plug in tablet with a USB-C cable (not included)
+2. Press the key for right mouse button
+3. Activate/deactivate tablet by holding down the key for 1 second
+4. Configure tablet area and other options by using the HYKU Configurator.
+
+## Configurator Usage Instructions
+1. Configure tablet screen area and tablet area by entering values in the Area Settings tab.
+2. Ensure Tablet is plugged in and reconized by the program with the "Connected" indicator at the bottom left.
+3. Press the Upload button to apply settings and upload them to the tablet.
+
+## Gallery
 
 ![HYKU Tablett CAD](https://user-images.githubusercontent.com/18311413/151928230-37d69286-3b1a-4be6-8ce3-51baddb28af4.png)
 
+![DSC_7095](https://user-images.githubusercontent.com/18311413/153546109-68d16228-b222-4288-9a37-1ca600fde260.jpg)
 
 ![DSC_7114](https://user-images.githubusercontent.com/18311413/152664692-02d8e038-a3b2-4e2d-8261-2b5b40aecb2e.jpg)
 
