@@ -1,4 +1,5 @@
 from ast import Str
+from email import message
 import os
 import sys
 import threading
@@ -6,9 +7,12 @@ import time
 import tkinter as tk
 from pprint import pprint
 from tkinter import messagebox, ttk
+import tkinter
+import tkinter.tix
 
 import serial
 import serial.tools.list_ports
+import tktooltip
 
 PID = 0x802F
 VID = 0x2886
@@ -184,15 +188,20 @@ class TabletArea(ttk.Labelframe):
             column=1, row=0, padx=(0, 5), pady=5
         )
 
-        self.lock_ratio_frame = ttk.Labelframe(
-            self, text="lock_ratio_button"
-        )
-        #self.lock_ratio_frame.grid(column=0, row=3, padx=5, pady=5)
+        self.lock_ratio_frame = ttk.Labelframe(self, text="lock_ratio_button")
+        # self.lock_ratio_frame.grid(column=0, row=3, padx=5, pady=5)
         self.lock_ratio_var = tk.IntVar(master, 0, name="lock_ratio")
         self.lock_ratio_button = ttk.Checkbutton(
             self, text="Link Aspect Ratio", variable=self.lock_ratio_var
         )
-        self.lock_ratio_button.grid(column=0, row=3, padx=0, pady=(0,5))
+        self.lock_ratio_button.grid(column=0, row=3, padx=0, pady=(0, 5))
+
+        tktooltip.ToolTip(
+            self.lock_ratio_button,
+            msg="Link aspect ratio of tablet area to screen area",
+            delay=0,
+            refresh=0.1,
+        )
 
         self.x_size.trace_add("write", self.updateScreenArea)
         self.y_size.trace_add("write", self.updateScreenArea)
@@ -255,7 +264,7 @@ class TabletArea(ttk.Labelframe):
         if input.isdigit() or input:
             return True
 
-        elif input is "":
+        elif input == "":
             return True
 
         else:
@@ -456,7 +465,7 @@ class ScreenMapFrame(ttk.Labelframe):
         if input.isdigit():
             return True
 
-        elif input is "":
+        elif input == "":
             return True
 
         else:
@@ -533,10 +542,10 @@ class Frame1(ttk.Frame):
             y_max_size=screenHeight,
             x_max_size=screenWidth,
         )
-        self.screen_map_frame.grid(column=0, row=1, padx=5, pady=5, columnspan=2)
+        self.screen_map_frame.grid(column=0, row=1, padx=5, pady=(5, 5), columnspan=2)
 
         self.tablet_area = TabletArea(self)
-        self.tablet_area.grid(column=0, row=2, padx=5, pady=5, columnspan=2)
+        self.tablet_area.grid(column=0, row=2, padx=5, pady=(0, 5), columnspan=2)
 
 
 class Frame2(ttk.Frame):
@@ -550,6 +559,8 @@ class Frame2(ttk.Frame):
         self.exp_filter_activate = tk.IntVar(self, name="exp_filter_activate")
         self.exp_filter_activate.set(0)
 
+        self.left_handed_var = tk.IntVar(self, name="left_handed_var")
+
         reg = self.register(self.validateDigit)
 
         self.filter_frame = ttk.Labelframe(self, text="Smoothing Filter")
@@ -562,19 +573,33 @@ class Frame2(ttk.Frame):
         )
         self.entry_delay.grid(row=1, column=1, padx=0, pady=5)
 
-        self.checkbox_delay = ttk.Checkbutton(self.filter_frame, variable=self.exp_filter_activate, text="Activate")
-        self.checkbox_delay.grid(row=0, column=0, padx=5, pady=(5,0))
+        self.checkbox_delay = ttk.Checkbutton(
+            self.filter_frame, variable=self.exp_filter_activate, text="Activate"
+        )
+        self.checkbox_delay.grid(row=0, column=0, padx=5, pady=(5, 0))
 
-        ttk.Label(self.filter_frame, text="Time Constant").grid(row=1, column=0, padx=5, pady=5, sticky="E")
-        ttk.Label(self.filter_frame, text="ms").grid(row=1, column=2, padx=(2,5), pady=5, sticky="E")
-        
+        ttk.Label(self.filter_frame, text="Time Constant").grid(
+            row=1, column=0, padx=5, pady=5, sticky="E"
+        )
+        ttk.Label(self.filter_frame, text="ms").grid(
+            row=1, column=2, padx=(2, 5), pady=5, sticky="E"
+        )
+
+        self.handedness_frame = ttk.Labelframe(self, text="Handedness")
+        self.handedness_frame.grid(
+            row=1, column=0, padx=(5, 5), pady=(0, 5), sticky="W"
+        )
+        self.checkbox_left_hand = ttk.Checkbutton(
+            self.handedness_frame, variable=self.left_handed_var, text="Left Handed"
+        )
+        self.checkbox_left_hand.grid(row=0, column=0)
 
     def validateDigit(self, input: str):
 
         if input.isdigit():
             return True
 
-        elif input is "":
+        elif input == "":
             return True
 
         else:
@@ -610,14 +635,13 @@ class Application(ttk.Frame):
 
         self.frame1.grid(row=0, column=0)
         self.frame2.grid(row=0, column=0)
- 
+
         self.tab_frame.add(self.frame1, text="Area Settings")
         self.tab_frame.add(self.frame2, text="Misc. Settings")
 
         self.tab_frame.grid(row=0, column=0, columnspan=3, pady=(10, 0))
 
-        self.status_indicator_var = tk.StringVar(self, name = "status_indicator")
-        
+        self.status_indicator_var = tk.StringVar(self, name="status_indicator")
 
         uploadButton = ttk.Button(self, text="Upload", command=self.uploadSettings)
         uploadButton.grid(column=2, row=1, padx=0, pady=5)
@@ -625,10 +649,14 @@ class Application(ttk.Frame):
         calibrateButton = ttk.Button(self, text="Calibrate", command=self.calibrate)
         calibrateButton.grid(column=1, row=1, padx=0, pady=5)
 
-        self.statusLabelFrame = ttk.Labelframe(self, text="Status", height=42, width=100)
+        self.statusLabelFrame = ttk.Labelframe(
+            self, text="Status", height=42, width=100
+        )
         self.statusLabelFrame.grid(row=1, column=0, sticky="W", pady=4)
 
-        self.status_indicator_label = ttk.Label(self.statusLabelFrame, textvariable=self.status_indicator_var)
+        self.status_indicator_label = ttk.Label(
+            self.statusLabelFrame, textvariable=self.status_indicator_var
+        )
         self.status_indicator_label.grid(column=0, row=1, padx=3, pady=0)
         self.statusLabelFrame.grid_propagate(0)
 
@@ -636,12 +664,17 @@ class Application(ttk.Frame):
         self.style.configure("LableForeground.Red", foreground="red")
 
         self.startPortListener(pid=PID, vid=VID)
-        
 
     def calibrate(self):
+        return_message = messagebox.askokcancel(
+            title="Confirm Calibration", message="Are you sure you want to calibrate?"
+        )
+        if return_message is False:
+            return
+
         comPort = self.get_serial_port_with_pid_vid(PID, VID)
         writeString = "<C>"
-        
+
         try:
             with serial.Serial(comPort, 19200, timeout=0.5) as ser:
                 print(writeString.encode("ASCII"))
@@ -652,12 +685,13 @@ class Application(ttk.Frame):
             messagebox.showerror(title="Tablet Connection Error", message=repr(e))
 
         else:
-            messagebox.showinfo(title="Calibration Complete", message="Calibration Complete")
+            messagebox.showinfo(
+                title="Calibration Complete", message="Calibration Complete"
+            )
 
         finally:
             if ser.is_open:
                 ser.close()
-
 
     def uploadSettings(self):
         comPort = self.get_serial_port_with_pid_vid(PID, VID)
@@ -687,8 +721,9 @@ class Application(ttk.Frame):
             writeString2 += f"{int(self.frame1.screen_map_frame.y_size.get())}"
             writeString2 += ">"
 
-            writeString3 += f"{int(self.frame2.exp_filter_activate.get())}" + " "
-            writeString3 += f"{float(self.frame2.exp_filter_delay.get()):.3f}"
+            writeString3 += f"{int(self.frame2.exp_filter_activate.get())} "
+            writeString3 += f"{float(self.frame2.exp_filter_delay.get()):.3f} "
+            writeString3 += f"{int(self.frame2.left_handed_var.get())}"
             writeString3 += ">"
 
         except Exception as e:
@@ -717,10 +752,11 @@ class Application(ttk.Frame):
         finally:
             if ser.is_open:
                 ser.close()
-    
 
     def startPortListener(self, pid, vid):
-        self.portListenerThread = threading.Thread(target=self.portListener, args=(pid, vid), daemon=True)
+        self.portListenerThread = threading.Thread(
+            target=self.portListener, args=(pid, vid), daemon=True
+        )
         self.portListenerThread.start()
 
     def portListener(self, pid, vid):
