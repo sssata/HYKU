@@ -1,18 +1,21 @@
-from ast import Str
-from email import message
 import os
+import pathlib
+import subprocess
 import sys
 import threading
 import time
+import tkinter
 import tkinter as tk
+import tkinter.tix
+from ast import Str
 from pprint import pprint
 from tkinter import messagebox, ttk
-import tkinter
-import tkinter.tix
+import requests
 
 import serial
 import serial.tools.list_ports
 import tktooltip
+from github import Github
 
 PID = 0x802F
 VID = 0x2886
@@ -30,17 +33,33 @@ FRAME_BG_COLOR = "#EBEBF0"
 
 user = ctypes.windll.user32
 
+class FirmwareRelease:
 
-def resource_path(relative_path):
+    def __init__(self, release_name: str, release_download_url: str) -> None:
+        self.release_name = release_name
+        self.release_download_url = release_download_url
+
+
+def resolve_resource_path(relative_path: str):
     """Get absolute path to resource, works for dev and for PyInstaller"""
     try:
         # PyInstaller creates a temp folder and stores path in _MEIPASS
         base_path = sys._MEIPASS
     except Exception:
         base_path = os.path.abspath(".")
+        base_path = pathlib.Path(".").resolve()
+    
+    return pathlib.Path(base_path) / relative_path
+    #return os.path.join(base_path, relative_path)
 
-    return os.path.join(base_path, relative_path)
+def get_serial_port_with_pid_vid(pid, vid):
+    """Return the port name of the correct PID, VID"""
+    port_list = serial.tools.list_ports.comports()
+    for port in port_list:
+        if port.pid == pid and port.vid == vid:
+            return port.name
 
+    return None
 
 class RECT(ctypes.Structure):
     _fields_ = [
@@ -551,10 +570,11 @@ class Frame1(ttk.Frame):
 class Frame2(ttk.Frame):
     def __init__(self, root, *args, **kwargs):
         tk.Frame.__init__(self, root, *args, **kwargs)
+
         # Self setup
         self.grid(row=0, column=0)
 
-        # Variables
+        # GUI Variables
         self.exp_filter_delay = tk.DoubleVar(self, name="exp_filter_delay")
         self.exp_filter_activate = tk.IntVar(self, name="exp_filter_activate")
         self.exp_filter_activate.set(0)
@@ -562,6 +582,8 @@ class Frame2(ttk.Frame):
         self.left_handed_var = tk.IntVar(self, name="left_handed_var")
 
         reg = self.register(self.validateDigit)
+
+        # Smoothing Filter GUI widgets
 
         self.filter_frame = ttk.Labelframe(self, text="Smoothing Filter")
         self.filter_frame.grid(row=0, column=0, padx=5, pady=5)
@@ -585,6 +607,8 @@ class Frame2(ttk.Frame):
             row=1, column=2, padx=(2, 5), pady=5, sticky="E"
         )
 
+        # Handedness GUI widgets
+
         self.handedness_frame = ttk.Labelframe(self, text="Handedness")
         self.handedness_frame.grid(
             row=1, column=0, padx=(5, 5), pady=(0, 5), sticky="W"
@@ -593,6 +617,8 @@ class Frame2(ttk.Frame):
             self.handedness_frame, variable=self.left_handed_var, text="Left Handed"
         )
         self.checkbox_left_hand.grid(row=0, column=0)
+
+        # H
 
     def validateDigit(self, input: str):
 
@@ -604,6 +630,132 @@ class Frame2(ttk.Frame):
 
         else:
             return False
+
+class Frame3(ttk.Frame):
+
+    def __init__(self, root, calibrate_command, *args, **kwargs):
+        tk.Frame.__init__(self, root, *args, **kwargs)
+
+        # Self configs
+        self.grid(row=0, column=0)
+
+        # Variables
+        self.selected_firmware_release = tk.StringVar(self, name= "selected_firmware_release")
+        self.firmware_release_dict: dict[str, str] = dict()
+
+        # Calibrate GUI elements
+        self.calibrate_frame = ttk.Labelframe(self, text="Calibrate")
+        self.calibrate_frame.grid(row=0, column=0, padx=5, pady=5, sticky="W")
+        self.calibrate_button = ttk.Button(self.calibrate_frame, text="Calibrate", command=calibrate_command)
+        self.calibrate_button.grid(row=0, column=0, padx=5, pady=5,)
+        
+        # Firmware Update elements
+        self.update_frame = ttk.Labelframe(self, text="Firmware Update")
+        self.update_frame.grid(row=1, column=0, padx=5, pady=5, sticky="W")
+        self.update_button = ttk.Button(self.update_frame, text= "Update", command=self.upload_firmware_callback)
+        self.update_button["state"] = "disabled"
+        self.update_button.grid(row=1, column=0, padx=5, pady=5, sticky="W")
+        self.fetch_releases_button = ttk.Button(self.update_frame, text="Fetch Releases", command=self.fetch_firmware_callback)
+        self.fetch_releases_button.grid(row=0, column=1)
+        self.firmware_combobox = ttk.Combobox(self.update_frame, textvariable=self.selected_firmware_release, width=10)
+        self.firmware_combobox.grid(row=0, column=0)
+        
+    def reset_port(self, port: serial.Serial):
+        """Resets given port by opening and closing port twice within 500ms at 1200 baud
+        """
+        assert not port.is_open
+        port.baudrate = 1200
+        port.open()
+        time.sleep(0.05)
+        port.close()
+        time.sleep(0.05)
+        port.open()
+        time.sleep(0.05)
+        port.close()
+        time.sleep(0.5)
+
+    def bossac_upload(self, bossac_path: str, bin_path: str):
+        """Run Bossac to upload given bin file"""
+        
+        args = (f"{bossac_path}",  f"--info", "-i", "-e", "-w", "-v", f"{bin_path}", "-R")
+
+        popen = subprocess.run(args=args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        output = popen.stdout.decode("ASCII")
+        err = popen.stderr.decode("ASCII")
+        print(output)
+        print(err)
+    
+    def download_firmware(self, file_path: str, url: str):
+        """Download file from given url to given filename"""
+
+        r = requests.get(url, allow_redirects=True)
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        open(file_path, 'wb').write(r.content)
+
+    def upload_firmware_callback(self):
+        """Callback for firmware upload button"""
+        comPort = get_serial_port_with_pid_vid(PID, VID)
+        port = serial.Serial()
+        port.port = comPort
+
+        release_name = self.selected_firmware_release.get()
+        url = self.firmware_release_dict[release_name]
+        bin_path = resolve_resource_path(f"binaries2/{release_name}")
+
+        try:
+            self.download_firmware(bin_path, url)
+        except Exception as e:
+            messagebox.showerror(title="Error Downloading Firmware", message=f"Error: {repr(e)}")
+
+        try:
+            self.reset_port(port)
+        except Exception as e:
+            messagebox.showerror(title="Error Reseting Port", message=f"Error: {repr(e)}")
+
+        try:
+            self.bossac_upload(resolve_resource_path("tools/bossac.exe"), resolve_resource_path(bin_path))
+        except Exception as e:
+            messagebox.showerror(title="Error Uploading Firmware", message=f"Error: {repr(e)}")
+
+        return
+
+    def get_firmware_release_list(self, firmware_release_dict: dict[str, str] = dict()):
+        print(os.environ.get('GITHUB_TOKEN'))
+        g = Github(os.environ.get('GITHUB_TOKEN'))
+        rate_limit = g.get_rate_limit()
+        print(rate_limit)
+
+        firmware_release_list: list[FirmwareRelease] = list()
+
+        repo = g.get_repo('sssata/HYKU_Firmware')
+        release_list = repo.get_releases()
+
+        for release in release_list:
+            asset_list = release.get_assets()
+            for asset in asset_list:
+                print(asset.name)
+                if asset.name.endswith(".bin"):
+                    print(asset.browser_download_url)
+                    firmware_release_list.append(FirmwareRelease(release.title, asset.browser_download_url))
+                    firmware_release_dict[release.title] = asset.browser_download_url
+        
+        return firmware_release_dict
+
+    def fetch_firmware_callback(self):
+        """callback function for fetch firmware releases button
+        Gets firmware list and download urls from github
+        Sets the self.firmware_release_dict as well"""
+
+        try:
+            self.get_firmware_release_list(self.firmware_release_dict)
+        except Exception as e:
+            messagebox.showerror(title="Error while getting firmware releases", message=f"Error: {repr(e)}")
+        self.firmware_combobox["values"] = list(self.firmware_release_dict.keys())
+        
+        if self.firmware_release_dict:
+            self.update_button["state"] = "normal"
+            self.selected_firmware_release.set(list(self.firmware_release_dict.keys())[0])
+
 
 
 class Application(ttk.Frame):
@@ -632,12 +784,14 @@ class Application(ttk.Frame):
 
         self.frame1 = Frame1(self, screenWidth, screenHeight)
         self.frame2 = Frame2(self)
+        self.frame3 = Frame3(self, calibrate_command=self.calibrate)
 
         self.frame1.grid(row=0, column=0)
         self.frame2.grid(row=0, column=0)
 
         self.tab_frame.add(self.frame1, text="Area Settings")
         self.tab_frame.add(self.frame2, text="Misc. Settings")
+        self.tab_frame.add(self.frame3, text="Tools")
 
         self.tab_frame.grid(row=0, column=0, columnspan=3, pady=(10, 0))
 
@@ -645,9 +799,6 @@ class Application(ttk.Frame):
 
         uploadButton = ttk.Button(self, text="Upload", command=self.uploadSettings)
         uploadButton.grid(column=2, row=1, padx=0, pady=5)
-
-        calibrateButton = ttk.Button(self, text="Calibrate", command=self.calibrate)
-        calibrateButton.grid(column=1, row=1, padx=0, pady=5)
 
         self.statusLabelFrame = ttk.Labelframe(
             self, text="Status", height=42, width=100
@@ -664,6 +815,7 @@ class Application(ttk.Frame):
         self.style.configure("LableForeground.Red", foreground="red")
 
         self.startPortListener(pid=PID, vid=VID)
+
 
     def calibrate(self):
         return_message = messagebox.askokcancel(
@@ -793,7 +945,7 @@ root = tk.Tk()
 root.geometry("338x675")
 root.resizable(False, False)
 root.title("HYKU Configurator")
-root.iconbitmap(resource_path("favicon.ico"))
+root.iconbitmap(resolve_resource_path("favicon.ico"))
 
 style = ttk.Style(root)
 
