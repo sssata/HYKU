@@ -5,6 +5,24 @@
 </p>
 
 
+## First Time Setup Instructions
+
+1. Plug in tablet with a USB-C cable (not included). The LED should light up in a bright rainbow.
+2. Deactivate tablet by holding down the keyswitchs for 1 second. The LED should turn blue.
+4. Open the HYKU Configurator and open the Tools tab. Ensure tablet is recognized by the program with the "Connected" indicator at the bottom left.
+5. Click Fetch Releases button, select latest version, and press Update.
+6. After Update completes, the tablet will need to be re-calibrated.
+7. To Calibrate, position arm in a straight line as shown in image and press calibrate.
+  ![image](https://user-images.githubusercontent.com/18311413/155939804-962d640f-8cda-495e-b61e-4f19291ad3b4.png)
+2. Reactivate tablet by holding down the keyswitchs for 1 second. The LED should turn bright rainbow.
+
+
+## Configurator Usage Instructions
+1. Configure tablet screen area and tablet area by entering values in the Area Settings tab.
+2. Ensure Tablet is plugged in and recognized by the program with the "Connected" indicator at the bottom left.
+3. Press the Upload button to apply settings and upload them to the tablet.
+
+
 # What is it?
 
 The HYKU Tablet is a novel drawing tablet-style input device designed from the ground up for osu!.
