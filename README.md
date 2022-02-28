@@ -5,7 +5,7 @@
 </p>
 
 
-## First Time Setup Instructions
+## First Time Setup Instructions, [Updated for v0.4](https://github.com/sssata/HYKU/releases/tag/v0.4)
 
 1. Plug in tablet with a USB-C cable (not included). The LED should light up in a bright rainbow.
 2. Deactivate tablet by holding down the keyswitchs for 1 second. The LED should turn blue.
