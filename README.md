@@ -4,6 +4,7 @@
   <img width=800 src="https://user-images.githubusercontent.com/18311413/152625943-edf4f875-47ea-483e-b48f-ee745d8d9139.jpg">
 </p>
 
+[Store Link](https://www.tindie.com/products/kappachino/hyku-tablet/)
 
 ## First Time Setup Instructions, [Updated for v0.4](https://github.com/sssata/HYKU/releases/tag/v0.4)
 
