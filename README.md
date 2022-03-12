@@ -7,11 +7,11 @@
 [Store Link](https://www.tindie.com/products/kappachino/hyku-tablet/)
 
 ## First Time Setup Instructions, [Updated for HYKU Configurator v0.4](https://github.com/sssata/HYKU/releases/tag/v0.4)
-1. Download the HYKU Configurator from above Link.
-2. Plug in tablet with a USB-C cable (not included). The LED should light up in a bright rainbow.
+1. Download HYKU_Configurator.exe from [here](https://github.com/sssata/HYKU/releases/tag/v0.5).
+2. Plug in tablet with a USB-C cable. The LED should light up in a bright rainbow.
 3. Deactivate tablet by holding down the keyswitchs for 1 second. The LED should turn blue.
 4. Open the HYKU Configurator and open the Tools tab. Ensure tablet is recognized by the program with the "Connected" indicator at the bottom left.
-5. Click Fetch Releases button, select latest version (v0.3 as of now), and press Update.
+5. Click Fetch Releases button, select latest version (v0.5 as of now), and press Update.
 6. After Update completes, the tablet will need to be re-calibrated.
 7. To Calibrate, position arm in a straight line as shown in image and press calibrate.
   ![image](https://user-images.githubusercontent.com/18311413/155939804-962d640f-8cda-495e-b61e-4f19291ad3b4.png)
