@@ -210,12 +210,12 @@ class TabletArea(ttk.Labelframe):
 
         self.screen_area = tk.Canvas(
             self,
-            height=self.CANVAS_HEIGHT+1,
-            width=self.CANVAS_WIDTH+1,
+            height=self.CANVAS_HEIGHT + 1,
+            width=self.CANVAS_WIDTH + 1,
             bg=master["bg"],
             borderwidth=0,
             highlightthickness=0,
-            bd=0
+            bd=0,
         )
         self.screen_area.grid(column=0, row=0, columnspan=2, padx=0, pady=5)
 
@@ -301,11 +301,11 @@ class TabletArea(ttk.Labelframe):
         self.updateScreenArea(0, 0, 0)
 
     def updateLock(self, a, b, c):
-        self.updateScreenArea(0,0,0)
+        self.updateScreenArea(0, 0, 0)
         if self.lock_ratio_var.get() == 1:
             self.y_size_entry.configure(state=tk.DISABLED)
 
-            #self.y_size.set(self.get_height_with_aspect_ratio_lock())
+            # self.y_size.set(self.get_height_with_aspect_ratio_lock())
         else:
             self.y_size_entry.configure(state=tk.NORMAL)
 
@@ -376,10 +376,10 @@ class TabletArea(ttk.Labelframe):
                 scaling_factor
                 bounding_box"""
 
-        gap_x = canvas_width - (
-            bounding_box.max_x - bounding_box.min_x
-        ) * scaling_factor
-        return max(0, gap_x/2)
+        gap_x = (
+            canvas_width - (bounding_box.max_x - bounding_box.min_x) * scaling_factor
+        )
+        return max(0, gap_x / 2)
 
     def center_in_canvas_y_gap(
         self,
@@ -394,10 +394,10 @@ class TabletArea(ttk.Labelframe):
                 canvas_height
                 scaling_factor
                 bounding_box"""
-        gap_y = canvas_height - (
-            bounding_box.max_y - bounding_box.min_y
-        ) * scaling_factor
-        return max(0, gap_y/2)
+        gap_y = (
+            canvas_height - (bounding_box.max_y - bounding_box.min_y) * scaling_factor
+        )
+        return max(0, gap_y / 2)
 
     def updateScreenArea(self, a, b, c):
 
@@ -431,8 +431,12 @@ class TabletArea(ttk.Labelframe):
         self.shift_origin(tablet_area_rectangle, bounding_box)
         self.shift_origin(tablet_size_rectangle, bounding_box)
 
-        gap_x = self.center_in_canvas_x_gap(self.CANVAS_WIDTH, self.CANVAS_HEIGHT, scaling_factor, bounding_box)
-        gap_y = self.center_in_canvas_y_gap(self.CANVAS_WIDTH, self.CANVAS_HEIGHT, scaling_factor, bounding_box)
+        gap_x = self.center_in_canvas_x_gap(
+            self.CANVAS_WIDTH, self.CANVAS_HEIGHT, scaling_factor, bounding_box
+        )
+        gap_y = self.center_in_canvas_y_gap(
+            self.CANVAS_WIDTH, self.CANVAS_HEIGHT, scaling_factor, bounding_box
+        )
 
         # Draw Tablet surface
         self.screen_area.create_rectangle(
@@ -482,7 +486,7 @@ class TabletArea(ttk.Labelframe):
     def validateFloat(self, input: str):
 
         # try to parse int
-        if input == "":
+        if input == "" or input == "-":
             return True
         try:
             float(input)
@@ -514,17 +518,18 @@ class ScreenMapFrame(ttk.Labelframe):
         self.x_origin = tk.StringVar(master, 0, name="x_origin")
         self.y_origin = tk.StringVar(master, 0, name="y_origin")
         self.selected_monitor_preset = tk.StringVar(master, monitor_primary)
+        self.selected_mode = tk.BooleanVar(master, 0, "selected_mode")
 
         self.configure(text="Screen Map")
 
         self.screen_area = tk.Canvas(
             self,
-            height=self.CANVAS_HEIGHT+1,
-            width=self.CANVAS_WIDTH+1,
+            height=self.CANVAS_HEIGHT + 1,
+            width=self.CANVAS_WIDTH + 1,
             bg=master["bg"],
             borderwidth=0,
             highlightthickness=0,
-            bd=0
+            bd=0,
         )
         self.screen_area.grid(column=0, row=0, columnspan=2, padx=0, pady=5)
 
@@ -546,42 +551,42 @@ class ScreenMapFrame(ttk.Labelframe):
 
         self.y_size_frame = ttk.Labelframe(self, text="Height")
         self.y_size_frame.grid(column=1, row=2, padx=5, pady=5)
-        y_size_entry = ttk.Entry(
+        self.y_size_entry = ttk.Entry(
             self.y_size_frame,
             textvariable=self.y_size,
             validate="key",
             validatecommand=(reg, "%P"),
             width=12,
         )
-        y_size_entry.grid(column=0, row=0, padx=5, pady=5)
+        self.y_size_entry.grid(column=0, row=0, padx=5, pady=5)
         ttk.Label(self.y_size_frame, text="px").grid(
             column=1, row=0, padx=(0, 5), pady=5
         )
 
         self.x_origin_frame = ttk.Labelframe(self, text="X Offset")
         self.x_origin_frame.grid(column=0, row=3, padx=5, pady=5)
-        y_origin_entry = ttk.Entry(
+        self.y_origin_entry = ttk.Entry(
             self.x_origin_frame,
             textvariable=self.x_origin,
             validate="key",
             validatecommand=(reg, "%P"),
             width=12,
         )
-        y_origin_entry.grid(column=0, row=0, padx=5, pady=5)
+        self.y_origin_entry.grid(column=0, row=0, padx=5, pady=5)
         ttk.Label(self.x_origin_frame, text="px").grid(
             column=1, row=0, padx=(0, 5), pady=5
         )
 
         self.y_origin_frame = ttk.Labelframe(self, text="Y Offset")
         self.y_origin_frame.grid(column=1, row=3, padx=5, pady=5)
-        x_origin_entry = ttk.Entry(
+        self.x_origin_entry = ttk.Entry(
             self.y_origin_frame,
             textvariable=self.y_origin,
             validate="key",
             validatecommand=(reg, "%P"),
             width=12,
         )
-        x_origin_entry.grid(column=0, row=0, padx=5, pady=5)
+        self.x_origin_entry.grid(column=0, row=0, padx=5, pady=5)
         ttk.Label(self.y_origin_frame, text="px").grid(
             column=1, row=0, padx=(0, 5), pady=5
         )
@@ -591,28 +596,35 @@ class ScreenMapFrame(ttk.Labelframe):
         self.monitor_select_dropdown = ttk.Combobox(
             self.monitor_select_frame,
             textvariable=self.selected_monitor_preset,
-            width=15,
+            width=18,
         )
-        self.monitor_select_dropdown.grid(row=0, column=1, padx=5, pady=5)
+        self.monitor_select_dropdown.grid(row=1, column=0, padx=5, pady=5)
         self.monitor_select_dropdown["values"] = monitor_list_names + ["Custom"]
         ttk.Label(self.monitor_select_frame, text="Preset ").grid(
             column=0, row=0, padx=(0, 5), pady=5
         )
+        self.mode_selector_checkbox = ttk.Checkbutton(
+            self.monitor_select_frame,
+            text="osu! Absolute Map Mode",
+            variable=self.selected_mode,
+        )
+        self.mode_selector_checkbox.grid(row=0, column=0, padx=5, pady=5)
 
         self.x_size.trace_add("write", self.update_screen_area)
         self.y_size.trace_add("write", self.update_screen_area)
         self.x_origin.trace_add("write", self.update_screen_area)
         self.y_origin.trace_add("write", self.update_screen_area)
+        self.selected_mode.trace_add("write", self.switch_mode_callback)
         self.selected_monitor_preset.trace_add("write", self.monitor_select_callback)
 
-        self.monitor_select_callback(0,0,0)
+        self.monitor_select_callback(0, 0, 0)
         self.update_screen_area(0, 0, 0)
 
     def get_bounding_box(
         self, monitor_list: List[Union[screeninfo.Monitor, MonitorTabletRectangle]]
     ):
 
-        bounding_box = MonitorBoundingBox(0, 0, 0, 0)
+        bounding_box = MonitorBoundingBox(10000, 10000, -10000, -10000)
         for monitor in monitor_list:
             if isinstance(monitor, MonitorTabletRectangle):
                 bounding_box.min_x = min(monitor.x0, bounding_box.min_x)
@@ -655,10 +667,10 @@ class ScreenMapFrame(ttk.Labelframe):
         scaling_factor,
         bounding_box: MonitorBoundingBox,
     ):
-        gap_x = canvas_width - (
-            bounding_box.max_x - bounding_box.min_x
-        ) * scaling_factor
-        return max(0, gap_x/2)
+        gap_x = (
+            canvas_width - (bounding_box.max_x - bounding_box.min_x) * scaling_factor
+        )
+        return max(0, gap_x / 2)
 
     def center_in_canvas_y_gap(
         self,
@@ -667,10 +679,10 @@ class ScreenMapFrame(ttk.Labelframe):
         scaling_factor,
         bounding_box: MonitorBoundingBox,
     ):
-        gap_y = canvas_height - (
-            bounding_box.max_y - bounding_box.min_y
-        ) * scaling_factor
-        return max(0, gap_y/2)
+        gap_y = (
+            canvas_height - (bounding_box.max_y - bounding_box.min_y) * scaling_factor
+        )
+        return max(0, gap_y / 2)
 
     def get_selected_screen_area(self):
         """Returns the current selected screen area as a MonitorRectangle object"""
@@ -690,12 +702,30 @@ class ScreenMapFrame(ttk.Labelframe):
                 self.x_origin.set(monitor.x)
                 self.y_origin.set(monitor.y)
 
+    def switch_mode_callback(self, var_name, var_index, event_type):
+        if self.selected_mode.get():
+            self.x_origin_entry["state"] = "disabled"
+            self.y_origin_entry["state"] = "disabled"
+
+        # Draw all monitors
+        else:
+            self.x_origin_entry["state"] = "normal"
+            self.y_origin_entry["state"] = "normal"
+
+        self.update_screen_area(0,0,0)
+
     def update_screen_area(self, var_name, var_index, event_type):
         """Redraws the screen area map"""
 
-        bounding_box = self.get_bounding_box(
-            monitor_list + [self.get_selected_screen_area()]
-        )
+        bounding_box_list = [self.get_selected_screen_area()]
+
+        if not self.selected_mode.get():
+            bounding_box_list += monitor_list
+
+        print(bounding_box_list)
+
+        bounding_box = self.get_bounding_box(bounding_box_list)
+        print(bounding_box.min_x, bounding_box.max_x, bounding_box.min_y, bounding_box.max_y)
         scaling_factor = self.get_scaling_factor(
             self.CANVAS_WIDTH, self.CANVAS_HEIGHT, bounding_box
         )
@@ -716,30 +746,35 @@ class ScreenMapFrame(ttk.Labelframe):
         self.shift_origin(screen_area_rectangle, bounding_box)
 
         is_matching_monitor = False
-        # Draw all monitors
-        for monitor in monitor_list:
-            monitor_rectangle = MonitorTabletRectangle(
-                monitor.x,
-                monitor.y,
-                monitor.x + monitor.width,
-                monitor.y + monitor.height,
-            )
-            self.shift_origin(monitor_rectangle, bounding_box)
 
-            self.screen_area.create_rectangle(
-                (monitor_rectangle.x0) * scaling_factor + gap_x,
-                (monitor_rectangle.y0) * scaling_factor + gap_y,
-                (monitor_rectangle.x1) * scaling_factor + gap_x,
-                (monitor_rectangle.y1) * scaling_factor + gap_y,
-                fill=BG_COLOR,
-                width=1,
-                outline="black",
-            )
-            
-            # Match current screen settings with preset
-            if monitor_rectangle == screen_area_rectangle:
-                self.selected_monitor_preset.set(monitor.name)
-                is_matching_monitor = True
+        # Draw all monitors
+        if not self.selected_mode.get():
+
+            for monitor in monitor_list:
+                monitor_rectangle = MonitorTabletRectangle(
+                    monitor.x,
+                    monitor.y,
+                    monitor.x + monitor.width,
+                    monitor.y + monitor.height,
+                )
+                self.shift_origin(monitor_rectangle, bounding_box)
+
+                self.screen_area.create_rectangle(
+                    (monitor_rectangle.x0) * scaling_factor + gap_x,
+                    (monitor_rectangle.y0) * scaling_factor + gap_y,
+                    (monitor_rectangle.x1) * scaling_factor + gap_x,
+                    (monitor_rectangle.y1) * scaling_factor + gap_y,
+                    fill=BG_COLOR,
+                    width=1,
+                    outline="black",
+                )
+
+                # Match current screen settings with preset
+                if monitor_rectangle == screen_area_rectangle:
+                    self.selected_monitor_preset.set(monitor.name)
+                    is_matching_monitor = True
+
+        # Check abs mode
 
         # If no match, set to Custom
         if not is_matching_monitor:
@@ -766,14 +801,17 @@ class ScreenMapFrame(ttk.Labelframe):
 
     def validateDigit(self, input: str):
 
-        if input.isdigit():
+        if input == "" or input == "-":
             return True
 
-        elif input == "":
-            return True
+        try:
+            int(input)
+        except Exception as e:
+            return False
 
         else:
-            return False
+            return True
+
 
 class Frame1(ttk.Frame):
     def __init__(self, root: tk.Tk, *args, **kwargs):
@@ -923,10 +961,10 @@ class Frame3(ttk.Frame):
         args = (
             f"{bossac_path}",
             f"--info",
-            "-i",   # INFO
-            "-e",   # Erase
-            "-w",   # Write
-            "-v",   # Verify
+            "-i",  # INFO
+            "-e",  # Erase
+            "-w",  # Write
+            "-v",  # Verify
             f"{bin_path}",
             "-R",
         )
@@ -948,8 +986,11 @@ class Frame3(ttk.Frame):
 
     def upload_firmware_callback(self):
         """Callback for firmware upload button"""
-        ok_cancel_response = messagebox.askokcancel(title="Confirm Firmware Update", message="Continue with Firmware Update? Tablet will need to be recalibrated and settings will need to be reuploaded.")
-        
+        ok_cancel_response = messagebox.askokcancel(
+            title="Confirm Firmware Update",
+            message="Continue with Firmware Update? Tablet will need to be recalibrated and settings will need to be reuploaded.",
+        )
+
         if not ok_cancel_response:
             return
 
@@ -1031,26 +1072,33 @@ class Frame3(ttk.Frame):
                 list(self.firmware_release_dict.keys())[0]
             )
 
+
 class CalibrateInfoFrame(tk.Toplevel):
     """Popup window containing info about calibration"""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.geometry("600x440")
-        self.protocol('WM_DELETE_WINDOW', self.set_cancel)
+        self.protocol("WM_DELETE_WINDOW", self.set_cancel)
         self.resizable(False, False)
-        self.calibrate_instructions_image = tk.PhotoImage(file=resolve_resource_path("calibrate_image_annotated.png"))
+        self.calibrate_instructions_image = tk.PhotoImage(
+            file=resolve_resource_path("calibrate_image_annotated.png")
+        )
 
         self.image_canvas = tk.Canvas(self, width=600, height=400)
         self.image_canvas.grid(row=0, column=0, columnspan=2, sticky="NSEW")
-        self.image_canvas.create_image(0,0, image=self.calibrate_instructions_image, anchor=tk.NW)
-        
-        self.calibrate_button = ttk.Button(self, text="Calibrate", command=self.set_calibrate)
+        self.image_canvas.create_image(
+            0, 0, image=self.calibrate_instructions_image, anchor=tk.NW
+        )
+
+        self.calibrate_button = ttk.Button(
+            self, text="Calibrate", command=self.set_calibrate
+        )
         self.calibrate_button.grid(row=1, column=1, pady=5)
 
         self.cancel_button = ttk.Button(self, text="Cancel", command=self.set_cancel)
         self.cancel_button.grid(row=1, column=0, pady=5)
-    
+
     def set_cancel(self):
         global is_calibration_canceled
         is_calibration_canceled = True
@@ -1060,7 +1108,7 @@ class CalibrateInfoFrame(tk.Toplevel):
         global is_calibration_canceled
         is_calibration_canceled = False
         self.destroy()
-        
+
 
 class Application(ttk.Frame):
 
@@ -1107,7 +1155,7 @@ class Application(ttk.Frame):
         self.statusLabelFrame.grid_propagate(0)
 
         self.style = ttk.Style(self)
-        self.style.configure("LableForeground.Red", foreground="red")
+        # self.style.configure("LablelForeground.Red", foreground="red")
 
         self.startPortListener(pid=PID, vid=VID)
 
@@ -1145,23 +1193,31 @@ class Application(ttk.Frame):
         port.reset_output_buffer()
         port.write(b"<V>")
         read_1 = port.readline()
-        read_1_string = read_1.decode("ASCII").rstrip('\r\n')
-        assert read_1.decode("ASCII").rstrip('\r\n') == "V", f"Failed to read firmware version, response line 1: {read_1_string}"
+        read_1_string = read_1.decode("ASCII").rstrip("\r\n")
+        assert (
+            read_1.decode("ASCII").rstrip("\r\n") == "V"
+        ), f"Failed to read firmware version, response line 1: {read_1_string}"
         read_2 = port.readline()
-        return read_2.decode(encoding="ASCII").rstrip('\r\n')
+        return read_2.decode(encoding="ASCII").rstrip("\r\n")
 
     def write_settings(self, port: serial.Serial, dict_to_write: dict):
 
         # set write command
         dict_to_write["cmd"] = "W"
-        
+
         # Write dict as json
         assert port.is_open
         port.reset_input_buffer()
         port.reset_output_buffer()
-        out_json_string = json.dumps(dict_to_write, ensure_ascii=True, check_circular=True, separators=(",",":"), sort_keys=False)
+        out_json_string = json.dumps(
+            dict_to_write,
+            ensure_ascii=True,
+            check_circular=True,
+            separators=(",", ":"),
+            sort_keys=False,
+        )
         port.write(out_json_string.encode("ASCII"))
-        
+
         # Read response
         port.read_until(b"{")
         in_bytes = bytes(b"{") + port.read_until(b"}")
@@ -1172,29 +1228,68 @@ class Application(ttk.Frame):
     def write_settings_test(self, port: serial.Serial, dict_to_write: dict):
         dict_to_write["cmd"] = "W"
         pprint(print(dict_to_write))
-        json_string = json.dumps(dict_to_write, ensure_ascii=True, check_circular=True, separators=(",",":"), sort_keys=False)
+        json_string = json.dumps(
+            dict_to_write,
+            ensure_ascii=True,
+            check_circular=True,
+            separators=(",", ":"),
+            sort_keys=False,
+        )
         print("minified length: ", len(json_string))
         print(json_string)
 
     def write_area_settings(self, port: serial.Serial):
-        selected_screen_area = self.frame1.screen_map_frame.get_selected_screen_area()
-        screen_bounding_box = self.frame1.screen_map_frame.get_bounding_box(monitor_list)
-        self.frame1.screen_map_frame.shift_origin(selected_screen_area, screen_bounding_box)
-        tablet_data = {
-            "t.x": self.frame1.tablet_area.x_origin.get(),
-            "t.y": 45 - (self.frame1.tablet_area.y_origin.get() + self.frame1.tablet_area.y_size.get()),
-            "t.w": self.frame1.tablet_area.x_size.get(),
-            "t.h": self.frame1.tablet_area.y_size.get(),
-            "s.x": selected_screen_area.x0,
-            "s.y": selected_screen_area.y0,
-            "s.w": selected_screen_area.x1 - selected_screen_area.x0,
-            "s.h": selected_screen_area.y1 - selected_screen_area.y0,
-            "s.wm": screen_bounding_box.max_x - screen_bounding_box.min_x,
-            "s.hm": screen_bounding_box.max_y - screen_bounding_box.min_y,
-        }
-        self.write_settings(port, tablet_data)
-
+        if self.frame1.screen_map_frame.selected_mode.get():
+            selected_screen_area = self.frame1.screen_map_frame.get_selected_screen_area()
+            screen_bounding_box = self.frame1.screen_map_frame.get_bounding_box(
+                [selected_screen_area]
+            )
+            self.frame1.screen_map_frame.shift_origin(
+                selected_screen_area, screen_bounding_box
+            )
+            tablet_data = {
+                "t.x": self.frame1.tablet_area.x_origin.get(),
+                "t.y": 45
+                - (
+                    self.frame1.tablet_area.y_origin.get()
+                    + self.frame1.tablet_area.y_size.get()
+                ),
+                "t.w": self.frame1.tablet_area.x_size.get(),
+                "t.h": self.frame1.tablet_area.y_size.get(),
+                "s.x": selected_screen_area.x0,
+                "s.y": selected_screen_area.y0,
+                "s.w": selected_screen_area.x1 - selected_screen_area.x0,
+                "s.h": selected_screen_area.y1 - selected_screen_area.y0,
+                "s.wm": screen_bounding_box.max_x - screen_bounding_box.min_x,
+                "s.hm": screen_bounding_box.max_y - screen_bounding_box.min_y,
+            }
+        else:
+            selected_screen_area = self.frame1.screen_map_frame.get_selected_screen_area()
+            screen_bounding_box = self.frame1.screen_map_frame.get_bounding_box(
+                monitor_list
+            )
+            self.frame1.screen_map_frame.shift_origin(
+                selected_screen_area, screen_bounding_box
+            )
+            tablet_data = {
+                "t.x": self.frame1.tablet_area.x_origin.get(),
+                "t.y": 45
+                - (
+                    self.frame1.tablet_area.y_origin.get()
+                    + self.frame1.tablet_area.y_size.get()
+                ),
+                "t.w": self.frame1.tablet_area.x_size.get(),
+                "t.h": self.frame1.tablet_area.y_size.get(),
+                "s.x": selected_screen_area.x0,
+                "s.y": selected_screen_area.y0,
+                "s.w": selected_screen_area.x1 - selected_screen_area.x0,
+                "s.h": selected_screen_area.y1 - selected_screen_area.y0,
+                "s.wm": screen_bounding_box.max_x - screen_bounding_box.min_x,
+                "s.hm": screen_bounding_box.max_y - screen_bounding_box.min_y,
+            }
         pprint(tablet_data)
+
+        self.write_settings(port, tablet_data)
 
     def write_misc_settings(self, port: serial.Serial):
         tablet_data = {
@@ -1209,13 +1304,16 @@ class Application(ttk.Frame):
     def uploadSettings(self):
         comPort = self.get_serial_port_with_pid_vid(PID, VID)
         try:
+            assert comPort is not None, "No Tablet Connected"
             with serial.Serial(comPort, baudrate=115200, timeout=0.5) as ser:
                 fw_version = self.get_fw_version(ser)
 
                 print("fw_version", fw_version)
 
                 if int(fw_version) < 4:
-                    raise Exception("Please Update Firmware Version to v0.5 or later through tools tab")
+                    raise Exception(
+                        "Please Update Firmware Version to v0.5 or later through tools tab"
+                    )
 
                 time.sleep(0.1)
 
@@ -1225,7 +1323,10 @@ class Application(ttk.Frame):
         except Exception as e:
             messagebox.showerror(title="Upload Settings Error", message=e)
         else:
-            messagebox.showinfo(title="Upload Complete", message="Upload Complete. Please unplug and replug tablet if screen area was changed.")
+            messagebox.showinfo(
+                title="Upload Complete",
+                message="Upload Complete. Please unplug and replug tablet if screen area was changed.",
+            )
         finally:
             if ser.is_open:
                 ser.close()
