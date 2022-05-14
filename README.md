@@ -24,6 +24,10 @@
 3. Press the Upload button to apply settings and upload them to the tablet.
 
 
+## Multi Monitor Instructions
+![abs mode pic](https://user-images.githubusercontent.com/18311413/168414697-56111953-ab7f-4154-bb76-f5265cc1e0c2.png)
+
+
 # What is it?
 
 The HYKU Tablet is a novel drawing tablet-style input device designed from the ground up for osu!.
