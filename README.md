@@ -6,8 +6,9 @@
 
 [Store Link](https://www.tindie.com/products/kappachino/hyku-tablet/)
 
-## First Time Setup Instructions, [Updated for HYKU Configurator v0.4](https://github.com/sssata/HYKU/releases/tag/v0.4)
-1. Download HYKU_Configurator.exe from [here](https://github.com/sssata/HYKU/releases/tag/v0.5).
+## First Time Setup Instructions, [Updated for HYKU Configurator v0.6](https://github.com/sssata/HYKU/releases/tag/v0.6.0)
+
+1. Download HYKU_Configurator.exe from [here](https://github.com/sssata/HYKU/releases/tag/v0.6.0).
 2. Plug in tablet with a USB-C cable. The LED should light up in a bright rainbow.
 3. Deactivate tablet by holding down the keyswitchs for 1 second. The LED should turn blue.
 4. Open the HYKU Configurator and open the Tools tab. Ensure tablet is recognized by the program with the "Connected" indicator at the bottom left.
@@ -62,12 +63,13 @@ The tablet features a single button:
 
 ### Download
 
-The latest version of the configurator program can be found in [Releases](https://github.com/sssata/HYKU_CAD/releases/tag/v0.1).
+The latest version of the configurator program can be found in [Releases](https://github.com/sssata/HYKU/releases).
 
 
 ## What's in the Box
 - 1x HYKU Tablet, fully assembled
 - 1x Tablet Pen, Removable 
+- 1x 2m USB Type C to USB Type A Cable
 
 ## Tablet Specs
 
@@ -76,13 +78,4 @@ The latest version of the configurator program can be found in [Releases](https:
 - **Max Physical Resolution:** Approx. 0.091mm
 - **Connector:** USB-C
 - **Hot Swappable Switch**
-
-
-## CAD Model
-
-![HYKU Tablett CAD](https://user-images.githubusercontent.com/18311413/151928230-37d69286-3b1a-4be6-8ce3-51baddb28af4.png)
-
-
-![DSC_7114](https://user-images.githubusercontent.com/18311413/152664692-02d8e038-a3b2-4e2d-8261-2b5b40aecb2e.jpg)
-
-![DSC_7004](https://user-images.githubusercontent.com/18311413/152664539-6aa800b4-ca26-41a1-bf23-c7e43810bf02.png)
+- **OS Compatibility:** Windows 10 64-bit
